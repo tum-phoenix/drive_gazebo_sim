@@ -109,119 +109,120 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name="Gazebo_2019">
-      <static>true</static>
-      <link name="ZBRADv7_1">
-        <pose>-0.014509697057036721 0.022784295240576725 -0.08407928817464547 1.8190477710039707 1.5707963267948863 0.3922837634997529</pose>
-        <inertial>
-          <pose>0.014509697057755047 -0.003958615906741851 0.017784295241189324 0 0 0</pose>
-          <mass>0.049602049113370295</mass>
-          <inertia>
-            <ixx>0.00040700586830297677</ixx>
-            <ixy>3.3328098872908996e-15</ixy>
-            <ixz>-2.18343022075916e-05</ixz>
-            <iyy>3.827742110954788e-05</iyy>
-            <iyz>-1.019383088637241e-09</iyz>
-            <izz>0.00040576597520924066</izz>
-          </inertia>
-        </inertial>
-        <collision name="ZBRADv7_1_collision">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/ZBRADv7.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="ZBRADv7_1_visual">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/ZBRADv7.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-      <link name="Turnigy4206Statorv1_1">
-        <pose>1.2106737053846345e-15 0.004999999999999994 -0.08785151957527598 -8.636650667801967e-15 -8.674803281807767e-15 0.783194272704847</pose>
-        <inertial>
-          <pose>-5.345208010143084e-07 0.009238002577085522 -1.3656168635634014e-07 0 0 0</pose>
-          <mass>0.010150401823259367</mass>
-          <inertia>
-            <ixx>6.377820108487859e-05</ixx>
-            <ixy>-4.1971232837996204e-10</ixy>
-            <ixz>-3.9899009605991435e-06</ixz>
-            <iyy>1.5718976341437403e-06</iyy>
-            <iyz>6.371056118226193e-13</iyz>
-            <izz>6.352392103072553e-05</izz>
-          </inertia>
-        </inertial>
-        <collision name="Turnigy4206Statorv1_1_collision">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/Turnigy4206Statorv1.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="Turnigy4206Statorv1_1_visual">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/Turnigy4206Statorv1.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-      <link name="Bodenplattedummyv47_1">
-        <pose>0.0 0.0 0.0 1.5707963267948966 -0.0 0.0</pose>
-        <inertial>
-          <pose>0.10889846412291833 0.0004772385251447973 -0.021993038407167105 0 0 0</pose>
-          <mass>0.27286904120108824</mass>
-          <inertia>
-            <ixx>0.0008131320677199672</ixx>
-            <ixy>-1.3101061244852367e-05</ixy>
-            <ixz>2.8624938490559513e-06</ixz>
-            <iyy>0.005660773886645985</iyy>
-            <iyz>0.0006535209046744606</iyz>
-            <izz>0.0062092100373661386</izz>
-          </inertia>
-        </inertial>
-        <collision name="Bodenplattedummyv47_1_collision">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/Bodenplattedummyv47.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name="Bodenplattedummyv47_1_visual">
-          <geometry>
-            <mesh>
-              <uri>model://meshes/Bodenplattedummyv47.stl</uri>
-              <scale>0.001 0.001 0.001</scale>
-            </mesh>
-          </geometry>
-        </visual>
-      </link>
-      <joint name="MotorToBase" type="revolute">
-        <parent>Bodenplattedummyv47_1</parent>
-        <child>Turnigy4206Statorv1_1</child>
-        <pose>0.0 0.0 0.045 0 0 0</pose>
-        <axis>
-          <xyz>0 0 1</xyz>
-          <use_parent_model_frame>0</use_parent_model_frame>
-        </axis>
-      </joint>
-      <joint name="UmdrehungCore" type="revolute">
-        <parent>Turnigy4206Statorv1_1</parent>
-        <child>ZBRADv7_1</child>
-        <pose>0.08713230702095683 0.05522410791538308 0.014022231400629612 0 0 0</pose>
-        <axis>
-          <xyz>0 1 0</xyz>
-          <use_parent_model_frame>0</use_parent_model_frame>
-        </axis>
-      </joint>
-    </model>
+            <model name="Gazebo_2019">
+                    <static>true</static>
+                    <link name="Bodenplattedummyv47_1">
+                            <pose>0.0 0.0 0.0 1.5707963267948966 -0.0 0.0</pose>
+                            <inertial>
+                                    <pose>0.10889846412291833 0.0004772385251447973 -0.021993038407167105 0 0 0</pose>
+                                    <mass>0.27286904120108824</mass>
+                                    <inertia>
+                                            <ixx>0.0008131320677199672</ixx>
+                                            <ixy>-1.3101061244852367e-05</ixy>
+                                            <ixz>2.8624938490559513e-06</ixz>
+                                            <iyy>0.005660773886645985</iyy>
+                                            <iyz>0.0006535209046744606</iyz>
+                                            <izz>0.0062092100373661386</izz>
+                                    </inertia>
+                            </inertial>
+                            <collision name="Bodenplattedummyv47_1_collision">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Bodenplattedummyv47.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </collision>
+                            <visual name="Bodenplattedummyv47_1_visual">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Bodenplattedummyv47.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </visual>
+                    </link>
+                    <link name="Turnigy4206Statorv1_1">
+                            <pose>1.2106737053846345e-15 0.004999999999999994 -0.08785151957527598 -8.636650667801967e-15 -8.674803281807767e-15 0.783194272704847</pose>
+                            <inertial>
+                                    <pose>-5.345208010143084e-07 0.009238002577085522 -1.3656168635634014e-07 0 0 0</pose>
+                                    <mass>0.010150401823259367</mass>
+                                    <inertia>
+                                            <ixx>6.377820108487859e-05</ixx>
+                                            <ixy>-4.1971232837996204e-10</ixy>
+                                            <ixz>-3.9899009605991435e-06</ixz>
+                                            <iyy>1.5718976341437403e-06</iyy>
+                                            <iyz>6.371056118226193e-13</iyz>
+                                            <izz>6.352392103072553e-05</izz>
+                                    </inertia>
+                            </inertial>
+                            <collision name="Turnigy4206Statorv1_1_collision">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Turnigy4206Statorv1.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </collision>
+                            <visual name="Turnigy4206Statorv1_1_visual">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Turnigy4206Statorv1.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </visual>
+                    </link>
+                    <link name="Reifen46mmcutv4_1">
+                            <pose>0.0 0.0 0.0 1.5707963267948966 -0.0 0.0</pose>
+                            <inertial>
+                                    <pose>-1.042102168689448e-14 -0.08726751260918761 -0.004999999999845468 0 0 0</pose>
+                                    <mass>0.04365928629152999</mass>
+                                    <inertia>
+                                            <ixx>0.00035342525833232833</ixx>
+                                            <ixy>-3.9323282408076884e-17</ixy>
+                                            <ixz>-1.90501865846779e-05</ixz>
+                                            <iyy>3.595843848338361e-05</iyy>
+                                            <iyz>-4.904471439033387e-13</iyz>
+                                            <izz>0.0003523337761705924</izz>
+                                    </inertia>
+                            </inertial>
+                            <collision name="Reifen46mmcutv4_1_collision">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Reifen46mmcutv4.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </collision>
+                            <visual name="Reifen46mmcutv4_1_visual">
+                                    <geometry>
+                                            <mesh>
+                                                    <uri>model://meshes/Reifen46mmcutv4.stl</uri>
+                                                    <scale>0.001 0.001 0.001</scale>
+                                            </mesh>
+                                    </geometry>
+                            </visual>
+                    </link>
+                    <joint name="Umdrehung3" type="revolute">
+                            <parent>Turnigy4206Statorv1_1</parent>
+                            <child>Reifen46mmcutv4_1</child>
+                            <pose>0 0 0.0 0 0 0</pose>
+                            <axis>
+                                    <xyz>0 1 0</xyz>
+                                    <use_parent_model_frame>0</use_parent_model_frame>
+                            </axis>
+                    </joint>
+
+                    <joint name="BaseToStator" type="revolute">
+                            <parent>Bodenplattedummyv47_1</parent>
+                            <child>Turnigy4206Statorv1_1</child>
+                            <pose>0 0.0 0.045 0 0 0</pose>
+                            <axis>
+                                    <xyz>0 0 1</xyz>
+                                    <use_parent_model_frame>0</use_parent_model_frame>
+                            </axis>
+                    </joint>
+            </model>
   </world>
 </sdf>
