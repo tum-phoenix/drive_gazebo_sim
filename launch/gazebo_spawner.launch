@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="world" default="$(find drive_gazebo_sim)/worlds/model.sdf"/>
+  <arg name="world" default="$(find drive_gazebo_sim)/worlds/car_reduced.sdf"/>
   <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
   <arg name="args" default="--verbose"/>
