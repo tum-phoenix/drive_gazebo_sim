@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<robot name="cc2019_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Import macros -->
+    <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/realsense-D435.macro.xacro" />
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/hokuyo.xacro"/>
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/pepperl_fuchs_ml100_8_1000_RT.xacro"/>
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/ximea.xacro"/>
+
+    <!-- Constants for math -->
+    <xacro:property name="PI" value="3.1415926535897931" />
+    <!-- Constants for robot dimensions -->
+    <xacro:property name="length_wheel" value="0.026" />
+    <xacro:property name="radius_wheel" value="0.032" />
+    <xacro:property name="length_from_base_to_wheel_y" value="0.088" />
+
+   <!-- Wheel macro -->
+   <xacro:macro name="steered_wheel" params="right_left reflect_right_left front_rear x_distance">
+        <!-- steer_right -->
+        <link name="${front_rear}_${right_left}_steer">
+            <inertial>
+                <mass value="1.0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                    iyy="1.0" iyz="0.0"
+                    izz="1.0" />
+            </inertial>
+        </link>
+
+        <joint name="chassis_to_${front_rear}_${right_left}_steer" type="revolute">
+            <axis xyz="0 0 1"/>
+            <parent link="rear_axis_middle"/>
+            <child link="${front_rear}_${right_left}_steer"/>
+            <origin xyz="${x_distance} ${-reflect_right_left*length_from_base_to_wheel_y} ${radius_wheel}"/>
+            <dynamics damping="0.7" friction="0.7"/>
+            <limit effort="7.0" lower="${-80*PI/180}" upper="${80*PI/180}" velocity="${200.0*PI/180.0*0.95}"/>
+        </joint>
+
+        <link name="${front_rear}_${right_left}_wheel">
+            <visual>
+                <origin rpy="0 ${PI} ${PI/2*(reflect_right_left-1)}" xyz="0 ${-reflect_right_left*length_wheel/2} 0"/>
+                <geometry>
+                    <mesh filename="package://drive_gazebo_sim/meshes/Rad.dae" scale="0.001 0.001 0.001"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="${length_wheel}" radius="${radius_wheel}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="0.049602" />
+                <inertia ixx="0.0000285" ixy="6.01*e-10" ixz="6.691*1e-16"
+                    iyy="0.00002853" iyz="3.525*1e-16"
+                    izz="0.00003704" />
+            </inertial>
+        </link>
+        <joint name="steer_to_${front_rear}_${right_left}_wheel" type="continuous">
+            <axis xyz="0 1 0"/>
+            <parent link="${front_rear}_${right_left}_steer"/>
+            <child link="${front_rear}_${right_left}_wheel"/>
+            <origin xyz="0 0 0"/>
+        </joint>
+
+        <!-- Steering transmission -->
+        <transmission name="tran_steering_${front_rear}_${right_left}">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="chassis_to_${front_rear}_${right_left}_steer">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${front_rear}_${right_left}_steer">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+
+        <!-- Wheel transmission -->
+        <transmission name="tran_wheel_${front_rear}_${right_left}">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="steer_to_${front_rear}_${right_left}_wheel">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${front_rear}_${right_left}_wheel">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <!-- Robot -->
+    <link name="base_link"/>
+
+    <link name="rear_axis_middle">
+      <visual>
+        <origin rpy="0 0 ${PI}" xyz="0 0 0" />
+        <geometry>
+          <mesh filename="package://drive_gazebo_sim/meshes/Car_reduced.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.125 0 0.035" />
+        <geometry>
+          <box size="0.35 0.2 0.055"/>
+        </geometry>
+      </collision>
+      <inertial>
+          <mass value="2.051134" />
+          <inertia ixx="0.01125" ixy="-0.0008344" ixz="0.008425"
+              iyy="0.04637" iyz="0.00007786"
+              izz="0.0449" />
+      </inertial>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+       <parent link="base_link"/>
+       <child link="rear_axis_middle"/>
+     </joint>
+
+    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.08" rpy="0 0 0"/>
+    <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 0"/>
+    <sensor_ximea name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
+
+    <realsense-d435 prefix="realsense" parent="rear_axis_middle">
+          <origin xyz="0.02 0 0.105" rpy="0 0 0"/>
+    </realsense-d435>
+
+    <xacro:steered_wheel right_left="right" reflect_right_left="1" front_rear="front" x_distance="0.22"/>
+    <xacro:steered_wheel right_left="left" reflect_right_left="-1" front_rear="front" x_distance="0.22"/>
+    <xacro:steered_wheel right_left="right" reflect_right_left="1" front_rear="rear" x_distance="0.0"/>
+    <xacro:steered_wheel right_left="left" reflect_right_left="-1" front_rear="rear" x_distance="0.0"/>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotNamespace>/cc2019_car</robotNamespace>
+      </plugin>
+    </gazebo>
+</robot>
