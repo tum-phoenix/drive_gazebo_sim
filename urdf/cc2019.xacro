@@ -100,15 +100,19 @@
       <visual>
         <origin rpy="0 0 ${PI}" xyz="0 0 0" />
         <geometry>
-          <mesh filename="package://drive_gazebo_sim/meshes/Car_reduced.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://drive_gazebo_sim/meshes/hull.dae" scale="0.001 0.001 0.001"/>
         </geometry>
 
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0.125 0 0.035" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <geometry>
+          <mesh filename="package://drive_gazebo_sim/meshes/hull_collision.dae" scale="0.001 0.001 0.001"/>
+        </geometry>
+<!--        <origin rpy="0 0 0" xyz="0.125 0 0.035" />
         <geometry>
           <box size="0.35 0.2 0.055"/>
-        </geometry>
+        </geometry>-->
       </collision>
       <inertial>
           <mass value="2.051134" />
@@ -123,7 +127,7 @@
        <child link="rear_axis_middle"/>
      </joint>
 
-    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.08" rpy="0 0 0"/>
+    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
     <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 ${3*PI/2}"/>
     <sensor_ximea_MQ013MG-ON_SY110 name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
 
