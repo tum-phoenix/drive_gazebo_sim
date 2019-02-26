@@ -2,9 +2,9 @@
 <robot name="cc2019_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <!-- Import macros -->
     <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/realsense-D435.macro.xacro" />
-    <xacro:include filename="$(find drive_gazebo_sim)/urdf/hokuyo.xacro"/>
-    <xacro:include filename="$(find drive_gazebo_sim)/urdf/pepperl_fuchs_ml100_8_1000_RT.xacro"/>
-    <xacro:include filename="$(find drive_gazebo_sim)/urdf/ximea.xacro"/>
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/hokuyo_urg04lx.macro.xacro"/>
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/pepperl_fuchs_ml100_8_1000_RT.macro.xacro"/>
+    <xacro:include filename="$(find drive_gazebo_sim)/urdf/ximea_MQ013MG-ON_SY110.macro.xacro"/>
 
     <!-- Constants for math -->
     <xacro:property name="PI" value="3.1415926535897931" />
@@ -18,10 +18,10 @@
         <!-- steer_right -->
         <link name="${front_rear}_${right_left}_steer">
             <inertial>
-                <mass value="1.0" />
-                <inertia ixx="1.0" ixy="0.0" ixz="0.0"
-                    iyy="1.0" iyz="0.0"
-                    izz="1.0" />
+                <mass value="0.097624" />
+                <inertia ixx="0.03914" ixy="0.001254" ixz="-0.000188347"
+                    iyy="0.002881" iyz="-0.0008104685"
+                    izz="0.03863" />
             </inertial>
         </link>
 
@@ -38,7 +38,7 @@
             <visual>
                 <origin rpy="0 ${PI} ${PI/2*(reflect_right_left-1)}" xyz="0 ${-reflect_right_left*length_wheel/2} 0"/>
                 <geometry>
-                    <mesh filename="package://drive_gazebo_sim/meshes/Rad.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://drive_gazebo_sim/meshes/wheel.dae" scale="0.001 0.001 0.001"/>
                 </geometry>
             </visual>
             <collision>
@@ -117,8 +117,8 @@
      </joint>
 
     <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.08" rpy="0 0 0"/>
-    <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 0"/>
-    <sensor_ximea name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
+    <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 ${3*PI/2}"/>
+    <sensor_ximea_MQ013MG-ON_SY110 name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
 
     <realsense-d435 prefix="realsense" parent="rear_axis_middle">
           <origin xyz="0.02 0 0.105" rpy="0 0 0"/>

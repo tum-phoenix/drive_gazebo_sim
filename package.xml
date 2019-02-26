@@ -54,7 +54,8 @@
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_plugins</exec_depend>
   <exec_depend>realsense_gazebo_plugin</exec_depend>
-  <exec_depend>robot_mechanism_controllers</exec_depend>
+  <exec_depend>position_controllers</exec_depend>
+  <exec_depend>velocity_controllers</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
