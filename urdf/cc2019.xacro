@@ -15,7 +15,6 @@
 
    <!-- Wheel macro -->
    <xacro:macro name="steered_wheel" params="right_left reflect_right_left front_rear x_distance">
-        <!-- steer_right -->
         <link name="${front_rear}_${right_left}_steer">
             <inertial>
                 <mass value="0.097624" />
@@ -53,6 +52,14 @@
                     iyy="0.00002853" iyz="3.525*1e-16"
                     izz="0.00003704" />
             </inertial>
+            <surface>
+              <friction>
+                <ode>
+                  <!-- approximate rubber on track -->
+                  <mu>0.8</mu>
+                </ode>
+              </friction>
+            </surface>
         </link>
         <joint name="steer_to_${front_rear}_${right_left}_wheel" type="continuous">
             <axis xyz="0 1 0"/>
