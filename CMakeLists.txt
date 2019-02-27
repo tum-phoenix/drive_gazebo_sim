@@ -199,6 +199,10 @@ install(DIRECTORY config
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
     PATTERN "*.svn" EXCLUDE)
 
+install(DIRECTORY worlds
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+    PATTERN "*.svn" EXCLUDE)
+
 #############
 ## Testing ##
 #############
