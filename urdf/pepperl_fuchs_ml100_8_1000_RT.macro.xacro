@@ -19,7 +19,7 @@
         <mass value="0.010" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <!-- inertia values are approximate but should be close enough -->
-        <inertia ixx="0.00001784" ixy="0.0000026951" ixz="-0.0000073832" iyy="0.0000226" iyz="0.0000042295" izz="0.0000013921" />
+        <inertia ixx="0.00001784" ixy="0.0000026951" ixz="0.0000073832" iyy="0.0000226" iyz="0.0000042295" izz="0.0000013921" />
       </inertial>
     </link>
 

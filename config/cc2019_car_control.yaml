@@ -24,18 +24,30 @@ cc2019_car:
 
   # Velocity Controllers ---------------------------------------
   front_left_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: steer_to_front_left_wheel
     pid: {p: 0.0, i: 0.0, d: 0.0}
   front_right_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: steer_to_front_right_wheel
     pid: {p: 0.0, i: 0.0, d: 0.0}
   rear_left_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: steer_to_rear_left_wheel
     pid: {p: 0.0, i: 0.0, d: 0.0}
   rear_right_velocity_controller:
-    type: effort_controllers/JointVelocityController
+    type: velocity_controllers/JointVelocityController
     joint: steer_to_rear_right_wheel
     pid: {p: 0.0, i: 0.0, d: 0.0}
+
+  gazebo_ros_contro:
+    pid_gains:
+      steer_to_front_left_wheel:
+        pid: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_front_right_wheel:
+        pid: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_rear_left_wheel:
+        pid: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_rear_right_wheel:
+        pid: {p: 1.0, i: 0.1, d: 0.01}
+

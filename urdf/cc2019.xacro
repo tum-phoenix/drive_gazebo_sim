@@ -84,10 +84,10 @@
         <transmission name="tran_wheel_${front_rear}_${right_left}">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="steer_to_${front_rear}_${right_left}_wheel">
-                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
             </joint>
             <actuator name="${front_rear}_${right_left}_wheel">
-                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
                 <mechanicalReduction>1</mechanicalReduction>
             </actuator>
         </transmission>
