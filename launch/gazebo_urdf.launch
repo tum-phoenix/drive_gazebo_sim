@@ -35,7 +35,7 @@
 
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-    args="-urdf  -model cc_2019_car -param robot_description  -z 0.08"/>
+    args="-urdf  -model cc_2019_car -param robot_description"/>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find drive_gazebo_sim)/config/cc2019_car_control.yaml" command="load"/>

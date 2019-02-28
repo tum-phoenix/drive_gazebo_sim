@@ -35,7 +35,5 @@
         </surface>
       </link>
     </model>
-    </world>
-    </sdf>
   </world>
 </sdf>

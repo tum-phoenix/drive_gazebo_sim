@@ -18,9 +18,12 @@
         <link name="${front_rear}_${right_left}_steer">
             <inertial>
                 <mass value="0.097624" />
-                <inertia ixx="0.03914" ixy="0.001254" ixz="-0.000188347"
+<!--                <inertia ixx="0.03914" ixy="0.001254" ixz="-0.000188347"
                     iyy="0.002881" iyz="-0.0008104685"
-                    izz="0.03863" />
+                    izz="0.03863" />-->
+                    <inertia ixx="0.000391" ixy="0.00001125" ixz="0.0"
+                        iyy="0.00002881" iyz="0.0"
+                        izz="0.0003863" />
             </inertial>
         </link>
 
@@ -29,8 +32,8 @@
             <parent link="rear_axis_middle"/>
             <child link="${front_rear}_${right_left}_steer"/>
             <origin xyz="${x_distance} ${-reflect_right_left*length_from_base_to_wheel_y} ${radius_wheel}"/>
-            <dynamics damping="5" friction="5"/>
-            <limit effort="7" lower="${-80*PI/180}" upper="${80*PI/180}" velocity="200000000"/> <!--velocity="${20*PI*length_wheel}"/>-->
+            <dynamics damping="0.01" friction="0.0"/>
+            <limit effort="1.0" lower="${-80*PI/180}" upper="${80*PI/180}" velocity="200000000"/> <!--velocity="${20*PI*length_wheel}"/>-->
         </joint>
 
         <link name="${front_rear}_${right_left}_wheel">
@@ -45,30 +48,15 @@
                 <geometry>
                     <cylinder length="${length_wheel}" radius="${radius_wheel}"/>
                 </geometry>
-                <surface>
-                  <friction>
-                    <ode>
-                      <!-- approximate rubber on track -->
-    <!--                  <mu>0.8</mu>-->
-                        <mu>800.0</mu>
-                        <mu2>600.0</mu2>
-                    </ode>
-                  </friction>
-                  <contact>
-                    <ode>
-                    <kp>1000000.000000</kp>
-                    <kd>1.000000</kd>
-<!--                    <max_vel>100.000000</max_vel>-->
-                    <min_depth>0.00100</min_depth>
-                    </ode>
-                  </contact>
-                </surface>
             </collision>
             <inertial>
                 <mass value="0.049602" />
-                <inertia ixx="0.0000285" ixy="6.01*e-10" ixz="6.691*1e-16"
+<!--                <inertia ixx="0.0000285" ixy="6.01*e-10" ixz="6.691*1e-16"
                     iyy="0.00002853" iyz="3.525*1e-16"
-                    izz="0.00003704" />
+                    izz="0.00003704" />-->
+                    <inertia ixx="0.0000285" ixy="0.0" ixz="0.0"
+                        iyy="0.00002853" iyz="0.0"
+                        izz="0.00003704" />
             </inertial>
         </link>
         <joint name="steer_to_${front_rear}_${right_left}_wheel" type="continuous">
@@ -76,8 +64,8 @@
             <parent link="${front_rear}_${right_left}_steer"/>
             <child link="${front_rear}_${right_left}_wheel"/>
             <origin xyz="0 0 0"/>
-            <dynamics damping="5" friction="0"/>
-<!--            <limit effort="0.2" velocity="${6000.0*PI/180.0*radius_wheel}"/>-->
+            <dynamics damping="0.01" friction="0.0"/>
+            <limit effort="1.0" velocity="${6000.0*PI/180.0*radius_wheel}"/>
         </joint>
 
         <!-- Steering transmission -->
@@ -103,6 +91,14 @@
                 <mechanicalReduction>1</mechanicalReduction>
             </actuator>
         </transmission>
+
+        <gazebo reference="${front_rear}_${right_left}_wheel">
+            <mu1 value="1.0"/>
+            <mu2 value="1.0"/>
+            <kp value="10000000.0" />
+            <kd value="1.0" />
+            <fdir1 value="1 0 0"/>
+        </gazebo>
     </xacro:macro>
 
     <!-- Robot -->
@@ -128,7 +124,7 @@
       </collision>
       <inertial>
           <mass value="2.051134" />
-          <inertia ixx="0.01125" ixy="-0.0008344" ixz="0.008425"
+          <inertia ixx="0.01125" ixy="0.0008344" ixz="0.008425"
               iyy="0.04637" iyz="0.00007786"
               izz="0.0449" />
       </inertial>
@@ -139,13 +135,13 @@
        <child link="rear_axis_middle"/>
      </joint>
 
-<!--    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
+    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
     <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 ${3*PI/2}"/>
     <sensor_ximea_MQ013MG-ON_SY110 name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
 
     <realsense-d435 prefix="realsense" parent="rear_axis_middle">
           <origin xyz="0.02 0 0.105" rpy="0 0 0"/>
-    </realsense-d435>-->
+    </realsense-d435>
 
     <xacro:steered_wheel right_left="right" reflect_right_left="1" front_rear="front" x_distance="0.22"/>
     <xacro:steered_wheel right_left="left" reflect_right_left="-1" front_rear="front" x_distance="0.22"/>
