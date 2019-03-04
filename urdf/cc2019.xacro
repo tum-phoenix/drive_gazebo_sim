@@ -38,9 +38,9 @@
 
         <link name="${front_rear}_${right_left}_wheel">
             <visual>
-                <origin rpy="0 ${PI} ${PI/2*(reflect_right_left-1)}" xyz="0 ${-reflect_right_left*length_wheel/2} 0"/>
+                <origin rpy="${PI/2} ${PI} ${PI/2*(reflect_right_left-1)}" xyz="0 ${-reflect_right_left*length_wheel/2} 0"/>
                 <geometry>
-                    <mesh filename="package://drive_gazebo_sim/meshes/wheel.dae" scale="0.001 0.001 0.001"/>
+                    <mesh filename="package://drive_gazebo_sim/meshes/wheel.dae" scale="1 1 1"/>
                 </geometry>
             </visual>
             <collision>
@@ -108,7 +108,7 @@
       <visual>
         <origin rpy="0 0 ${PI}" xyz="0 0 0" />
         <geometry>
-          <mesh filename="package://drive_gazebo_sim/meshes/hull.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://drive_gazebo_sim/meshes/hull.dae" scale="1 1 1"/>
         </geometry>
 
       </visual>

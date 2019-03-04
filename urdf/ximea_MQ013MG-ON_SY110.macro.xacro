@@ -13,7 +13,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://drive_gazebo_sim/meshes/ximea_MQ013MG-ON_SY110.dae" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://drive_gazebo_sim/meshes/ximea_MQ013MG-ON_SY110.dae" scale="1 1 1"/>
         </geometry>
       </visual>
       <inertial>
