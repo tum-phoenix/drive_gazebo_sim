@@ -40,14 +40,10 @@ cc2019_car:
     joint: steer_to_rear_right_wheel
     pid: {p: 0.0, i: 0.0, d: 0.0}
 
-  gazebo_ros_contro:
+  gazebo_ros_control:
     pid_gains:
-      steer_to_front_left_wheel:
-        pid: {p: 1.0, i: 0.1, d: 0.01}
-      steer_to_front_right_wheel:
-        pid: {p: 1.0, i: 0.1, d: 0.01}
-      steer_to_rear_left_wheel:
-        pid: {p: 1.0, i: 0.1, d: 0.01}
-      steer_to_rear_right_wheel:
-        pid: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_front_left_wheel: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_front_right_wheel: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_rear_left_wheel: {p: 1.0, i: 0.1, d: 0.01}
+      steer_to_rear_right_wheel: {p: 1.0, i: 0.1, d: 0.01}
 
