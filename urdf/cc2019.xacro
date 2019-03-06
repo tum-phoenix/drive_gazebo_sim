@@ -122,18 +122,27 @@
           <box size="0.35 0.2 0.055"/>
         </geometry>-->
       </collision>
-      <inertial>
-          <mass value="2.051134" />
-          <inertia ixx="0.01125" ixy="0.0008344" ixz="0.008425"
-              iyy="0.04637" iyz="0.00007786"
-              izz="0.0449" />
-      </inertial>
     </link>
 
     <joint name="base_joint" type="fixed">
        <parent link="base_link"/>
        <child link="rear_axis_middle"/>
      </joint>
+
+    <joint name="rear_to_chassis" type="fixed">
+       <parent link="rear_axis_middle"/>
+       <child link="chassis"/>
+       <origin xyz="0.110912 0.00420803 0.0422526"/>
+     </joint>
+
+    <link name="chassis">
+       <inertial>
+          <mass value="2.051134" />
+          <inertia ixx="0.01125" ixy="0.0008344" ixz="0.008425"
+              iyy="0.04637" iyz="0.00007786"
+              izz="0.0449" />
+       </inertial>
+    </link>
 
     <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
     <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 ${3*PI/2}"/>
