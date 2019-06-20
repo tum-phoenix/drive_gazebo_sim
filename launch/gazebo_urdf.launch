@@ -46,11 +46,12 @@
     args="front_left_steering_controller
     front_right_steering_controller
     rear_left_steering_controller
-    rear_right_steering_controller
-    front_left_velocity_controller
+    rear_right_steering_controller"
+    />
+<!--    front_left_velocity_controller
     front_right_velocity_controller
     rear_left_velocity_controller
-    rear_right_velocity_controller"/>
+    rear_right_velocity_controller"-->
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="false" output="screen">
