@@ -13,8 +13,8 @@
     <xacro:property name="radius_wheel" value="0.032" />
     <xacro:property name="length_from_base_to_wheel_y" value="0.088" />
     <xacro:property name="steering_offset" value="0.05" />
-    <xacro:property name="mass_scaling_factor" value="10000" />
-    <xacro:property name="inertia_scaling_factor" value="10000" />
+    <xacro:property name="mass_scaling_factor" value="10" />
+    <xacro:property name="inertia_scaling_factor" value="100" />
 
     <xacro:macro name="scaled_mass" params="value">
         <mass value="${value * mass_scaling_factor}" />
@@ -102,7 +102,7 @@
         </transmission>
 
         <!-- Wheel transmission -->
-<!--        <transmission name="tran_wheel_${front_rear}_${right_left}">
+        <transmission name="tran_wheel_${front_rear}_${right_left}">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="steer_to_${front_rear}_${right_left}_wheel">
                 <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -111,7 +111,7 @@
                 <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
                 <mechanicalReduction>1</mechanicalReduction>
             </actuator>
-        </transmission>-->
+        </transmission>
 
 <!--        <gazebo reference="${front_rear}_${right_left}_wheel">
             <mu1 value="1.0"/>
