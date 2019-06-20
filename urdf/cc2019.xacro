@@ -54,7 +54,7 @@
             <child link="${front_rear}_${right_left}_steer"/>
             <origin xyz="${x_distance} ${-reflect_right_left * (length_from_base_to_wheel_y - steering_offset)} ${radius_wheel}"/>
             <dynamics damping="0.01" friction="0.0"/>
-            <limit effort="1.0" lower="${-80*PI/180}" upper="${80*PI/180}" velocity="200000000"/> <!--velocity="${20*PI*length_wheel}"/>-->
+            <limit effort="10.0" lower="${-80*PI/180}" upper="${80*PI/180}" velocity="200000000"/> <!--velocity="${20*PI*length_wheel}"/>-->
         </joint>
 
         <link name="${front_rear}_${right_left}_wheel">
@@ -75,9 +75,9 @@
 <!--                <inertia ixx="0.0000285" ixy="6.01*e-10" ixz="6.691*1e-16"
                     iyy="0.00002853" iyz="3.525*1e-16"
                     izz="0.00003704" />-->
-                    <xacro:scaled_inertia ixx="0.0000285" ixy="0.0" ixz="0.0"
-                        iyy="0.00002853" iyz="0.0"
-                        izz="0.00003704" />
+                    <xacro:scaled_inertia ixx="0.000285" ixy="0.0" ixz="0.0"
+                        iyy="0.0002853" iyz="0.0"
+                        izz="0.0003704" />
             </inertial>
         </link>
         <joint name="steer_to_${front_rear}_${right_left}_wheel" type="continuous">
@@ -165,13 +165,13 @@
        </inertial>
     </link>
 
-<!--    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
+    <sensor_hokuyo_urg04lx name="hokuyo" parent="rear_axis_middle" xyz="0.025 0 0.09" rpy="0 0 0"/>
     <sensor_pepperl_fuchs_ml100_8_1000_RT name="pepperl_fuchs" parent="rear_axis_middle" xyz="0.043 -0.0995 0.021" rpy="0 0 ${3*PI/2}"/>
     <sensor_ximea_MQ013MG-ON_SY110 name="ximea" parent="rear_axis_middle" xyz="0.122 0.0 0.233" rpy="${PI} ${-7*PI/6} ${PI}"/>
 
     <realsense-d435 prefix="realsense" parent="rear_axis_middle">
           <origin xyz="0.02 0 0.105" rpy="0 0 0"/>
-    </realsense-d435>-->
+    </realsense-d435>
 
     <xacro:steered_wheel right_left="right" reflect_right_left="1" front_rear="front" x_distance="0.22"/>
     <xacro:steered_wheel right_left="left" reflect_right_left="-1" front_rear="front" x_distance="0.22"/>

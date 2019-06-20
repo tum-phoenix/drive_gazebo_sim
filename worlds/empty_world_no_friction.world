@@ -6,8 +6,11 @@
     <include>
       <uri>model://sun</uri>
     </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
     <!-- A ground plane -->
-    <model name="ground_plane">
+<!--    <model name="ground_plane">
       <pose>0 0 0 0 0 0</pose>
       <link name="base_link">
         <collision name="collision">
@@ -35,6 +38,6 @@
            </friction>
         </surface>
       </link>
-    </model>
+    </model>-->
   </world>
 </sdf>
