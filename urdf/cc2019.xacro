@@ -86,7 +86,7 @@
             <child link="${front_rear}_${right_left}_wheel"/>
             <origin xyz="0 ${-reflect_right_left * steering_offset} 0"/>
             <dynamics damping="0.01" friction="0.0"/>
-            <limit effort="1.0" velocity="${6000.0*PI/180.0*radius_wheel}"/>
+            <limit effort="1.0" velocity="${60000.0*PI/180.0*radius_wheel}"/>
         </joint>
 
         <!-- Steering transmission -->
