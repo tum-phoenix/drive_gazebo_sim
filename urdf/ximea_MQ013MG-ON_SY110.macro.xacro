@@ -11,7 +11,7 @@
         </geometry>
       </collision>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.037 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://drive_gazebo_sim/meshes/ximea_MQ013MG-ON_SY110.dae" scale="1 1 1"/>
         </geometry>
@@ -47,7 +47,7 @@
 <!--         <format>R8G8B8</format>-->
        </image>
        <clip>
-         <near>0.02</near>
+         <near>0.05</near>
          <far>300</far>
        </clip>
        <noise>
@@ -73,6 +73,7 @@
        <distortionT1>0.0</distortionT1>
        <distortionT2>0.0</distortionT2>
      </plugin>
+     <visualize>1</visualize>
    </sensor>
  </gazebo>
 </xacro:macro>
