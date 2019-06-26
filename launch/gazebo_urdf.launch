@@ -45,17 +45,20 @@
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true"
     output="screen" ns="/cc2019_car"
-    args="front_left_steering_controller
+    args="
+    front_left_steering_controller
     front_right_steering_controller
     rear_left_steering_controller
     rear_right_steering_controller
     front_left_velocity_controller
     front_right_velocity_controller
     rear_left_velocity_controller
-    rear_right_velocity_controller" />
+    rear_right_velocity_controller
+    joint_state_controller" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="false" output="screen">
+    <remap from="/joint_states" to="$(arg joint_state_topic)" />
   </node>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
     <remap from="/joint_states" to="$(arg joint_state_topic)" />
