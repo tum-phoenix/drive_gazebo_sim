@@ -7,6 +7,8 @@
   <arg name="headless" default="false"/>
   <arg name="debug" default="false"/>
   <arg name="controller_tuning" default="false"/>
+  <arg name="joint_state_topic" default="/cc2019_car/joint_states"/>
+
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <group if="$(arg controller_tuning)">
       <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -54,7 +56,9 @@
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="false" output="screen">
-    <remap from="/joint_states" to="/cc2019_car/joint_states" />
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <remap from="/joint_states" to="$(arg joint_state_topic)" />
   </node>
 
 </launch>
